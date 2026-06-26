@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <payment>
+            <conflux_direct>
+                <active>0</active>
+                <model>Conflux\Payment\Model\Direct</model>
+                <order_status>pending_payment</order_status>
+                <title>Credit Card</title>
+                <environment></environment>
+                <allowspecific>0</allowspecific>
+                <group>conflux</group>
+                <sort_order>900</sort_order>
+            </conflux_direct>
+            <conflux_checkout>
+                <active>0</active>
+                <model>Conflux\Payment\Model\Checkout</model>
+                <order_status>pending_payment</order_status>
+                <title>Conflux Hosted Checkout</title>
+                <environment></environment>
+                <expires_in>7200</expires_in>
+                <allowspecific>0</allowspecific>
+                <group>conflux</group>
+                <sort_order>901</sort_order>
+            </conflux_checkout>
+        </payment>
+    </default>
+</config>

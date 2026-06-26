@@ -1,0 +1,103 @@
+<div class="payment-method" data-bind="css: {'_active': (getCode() == isChecked())}">
+    <div class="payment-method-title field choice">
+        <input type="radio"
+               name="payment[method]"
+               class="radio"
+               data-bind="attr: {'id': getCode()}, value: getCode(), checked: isChecked, click: selectPaymentMethod, visible: isRadioButtonVisible()" />
+        <label data-bind="attr: {'for': getCode()}" class="label">
+            <span data-bind="text: getTitle()"></span>
+        </label>
+    </div>
+
+    <div class="payment-method-content">
+        <!-- ko foreach: getRegion('messages') -->
+        <!-- ko template: getTemplate() --><!-- /ko -->
+        <!--/ko-->
+
+        <div class="payment-method-billing-address">
+            <!-- ko foreach: $parent.getRegion(getBillingAddressFormName()) -->
+            <!-- ko template: getTemplate() --><!-- /ko -->
+            <!--/ko-->
+        </div>
+
+        <fieldset class="fieldset payment items ccard conflux-card-form">
+            <div class="field number required conflux-card-form__number">
+                <label class="label" data-bind="attr: {'for': getCode() + '_card_number'}">
+                    <span data-bind="i18n: 'Card Number'"></span>
+                </label>
+                <div class="control conflux-card-form__number-control">
+                    <input type="text"
+                           class="input-text"
+                           autocomplete="cc-number"
+                           inputmode="numeric"
+                           placeholder="Card Number"
+                           data-bind="attr: {'id': getCode() + '_card_number'}, value: cardNumber, valueUpdate: 'keyup'" />
+                    <span class="conflux-card-form__brand"
+                          data-bind="text: getCardTypeLabel(), css: {'_detected': getCardType()}"></span>
+                </div>
+            </div>
+
+            <div class="conflux-card-form__row">
+                <div class="field date required">
+                    <label class="label">
+                        <span data-bind="i18n: 'Expiration Date'"></span>
+                    </label>
+                    <div class="control conflux-card-form__expiry">
+                        <input type="text"
+                               class="input-text"
+                               autocomplete="cc-exp-month"
+                               inputmode="numeric"
+                               maxlength="2"
+                               placeholder="MM"
+                               data-bind="value: expiryMonth, valueUpdate: 'keyup'" />
+                        <span class="conflux-card-form__separator">/</span>
+                        <input type="text"
+                               class="input-text"
+                               autocomplete="cc-exp-year"
+                               inputmode="numeric"
+                               maxlength="2"
+                               placeholder="YY"
+                               data-bind="value: expiryYear, valueUpdate: 'keyup'" />
+                    </div>
+                </div>
+
+                <div class="field cvv required">
+                    <label class="label" data-bind="attr: {'for': getCode() + '_cvv'}">
+                        <span data-bind="i18n: 'CVV'"></span>
+                    </label>
+                    <div class="control">
+                        <input type="password"
+                               class="input-text"
+                               autocomplete="cc-csc"
+                               inputmode="numeric"
+                               maxlength="4"
+                               placeholder="CVC"
+                               data-bind="attr: {'id': getCode() + '_cvv'}, value: cvv, valueUpdate: 'keyup'" />
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+
+        <div class="checkout-agreements-block">
+            <!-- ko foreach: $parent.getRegion('before-place-order') -->
+            <!-- ko template: getTemplate() --><!-- /ko -->
+            <!--/ko-->
+        </div>
+
+        <div class="actions-toolbar">
+            <div class="primary">
+                <button class="action primary checkout"
+                        type="submit"
+                        data-bind="
+                            click: placeOrder,
+                            attr: {'title': $t('Place Order')},
+                            enable: (getCode() == isChecked()),
+                            css: {disabled: !isPlaceOrderActionAllowed()}
+                        "
+                        disabled>
+                    <span data-bind="i18n: 'Place Order'"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
