@@ -10,10 +10,10 @@
         "checkout",
         "conflux"
     ],
-    "homepage": "https://github.com/confluxapi/confluxapi-magento2-payment",
+    "homepage": "https://github.com/ideal-source/confluxapi-magento2-payment",
     "support": {
-        "issues": "https://github.com/confluxapi/confluxapi-magento2-payment/issues",
-        "source": "https://github.com/confluxapi/confluxapi-magento2-payment"
+        "issues": "https://github.com/ideal-source/confluxapi-magento2-payment/issues",
+        "source": "https://github.com/ideal-source/confluxapi-magento2-payment"
     },
     "require": {
         "php": "^8.1",
