@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Conflux\Payment\Model;
 
+use Conflux\Payment\Block\Info\Direct as DirectInfoBlock;
 use Magento\Framework\DataObject;
 use Magento\Payment\Model\Method\AbstractMethod;
 
@@ -15,6 +16,11 @@ class Direct extends AbstractMethod
      * @var string
      */
     protected $_code = self::METHOD_CODE;
+
+    /**
+     * @var string
+     */
+    protected $_infoBlockType = DirectInfoBlock::class;
 
     /**
      * @var bool
@@ -67,7 +73,24 @@ class Direct extends AbstractMethod
             }
         }
 
+        if (!empty($additionalData['card_number'])) {
+            $info->setAdditionalInformation(
+                'conflux_card_number_masked',
+                $this->maskCardNumber((string)$additionalData['card_number'])
+            );
+        }
+
         return $this;
     }
 
+    private function maskCardNumber(string $cardNumber): string
+    {
+        $cardNumber = preg_replace('/\D+/', '', $cardNumber) ?: '';
+
+        if ($cardNumber === '') {
+            return '';
+        }
+
+        return str_repeat('*', max(strlen($cardNumber) - 4, 0)) . substr($cardNumber, -4);
+    }
 }

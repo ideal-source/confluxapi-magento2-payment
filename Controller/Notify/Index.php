@@ -79,7 +79,9 @@ class Index implements HttpPostActionInterface, CsrfAwareActionInterface
         }
 
         if (!empty($data['flow_order_no'])) {
-            $payment->setTransactionId((string)$data['flow_order_no']);
+            $flowOrderNo = (string)$data['flow_order_no'];
+            $payment->setTransactionId($flowOrderNo);
+            $payment->setLastTransId($flowOrderNo);
         }
         $payment->setAdditionalInformation('conflux_last_notification', $notification);
 

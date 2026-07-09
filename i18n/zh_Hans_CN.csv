@@ -42,3 +42,6 @@
 "Please enter a valid credit card security code.","Please enter a valid credit card security code."
 "Please enter complete credit card information.","Please enter complete credit card information."
 "The credit card type is not supported by Conflux.","The credit card type is not supported by Conflux."
+"Card Type","卡组织"
+"Conflux Flow Order No","Conflux 流水号"
+"Trade Status","交易状态"

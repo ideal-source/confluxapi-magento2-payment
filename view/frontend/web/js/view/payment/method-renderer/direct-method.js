@@ -17,6 +17,25 @@ define([
         expiryYear: ko.observable(''),
         cvv: ko.observable(''),
 
+        initialize: function () {
+            this._super();
+
+            this.cardNumber.subscribe(function (value) {
+                this.limitNumericObservable(this.cardNumber, value, 19);
+            }, this);
+            this.expiryMonth.subscribe(function (value) {
+                this.limitNumericObservable(this.expiryMonth, value, 2);
+            }, this);
+            this.expiryYear.subscribe(function (value) {
+                this.limitNumericObservable(this.expiryYear, value, 2);
+            }, this);
+            this.cvv.subscribe(function (value) {
+                this.limitNumericObservable(this.cvv, value, 4);
+            }, this);
+
+            return this;
+        },
+
         getData: function () {
             var browserInfo = this.getBrowserInfo();
 
@@ -107,6 +126,14 @@ define([
 
         normalizeCardNumber: function (number) {
             return String(number || '').replace(/\D+/g, '');
+        },
+
+        limitNumericObservable: function (observable, value, maxLength) {
+            var normalized = String(value || '').replace(/\D+/g, '').slice(0, maxLength);
+
+            if (value !== normalized) {
+                observable(normalized);
+            }
         },
 
         isValidCardNumber: function (number) {

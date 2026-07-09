@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Conflux\Payment\Model\Api;
 
+use Conflux\Payment\Model\Direct;
 use Magento\Framework\Controller\Result\Redirect;
 use Magento\Framework\Controller\Result\RedirectFactory;
 use Magento\Framework\Message\ManagerInterface;
@@ -30,7 +31,12 @@ class PaymentRedirectHandler
         $payment = $order->getPayment();
         $payment->setAdditionalInformation('conflux_response', $data);
         if (!empty($data['flow_order_no'])) {
-            $payment->setTransactionId((string)$data['flow_order_no']);
+            $flowOrderNo = (string)$data['flow_order_no'];
+            $payment->setTransactionId($flowOrderNo);
+            $payment->setLastTransId($flowOrderNo);
+        }
+        if ($payment->getMethod() === Direct::METHOD_CODE) {
+            $this->clearSensitiveCardData($payment);
         }
         $order->addCommentToStatusHistory(__('Conflux payment was initialized. Flow order: %1', $data['flow_order_no'] ?? ''));
         $this->orderRepository->save($order);
@@ -96,5 +102,27 @@ class PaymentRedirectHandler
         }
 
         return '';
+    }
+
+    private function clearSensitiveCardData($payment): void
+    {
+        $cardNumber = (string)$payment->getAdditionalInformation('conflux_card_number');
+        if ($cardNumber !== '' && !$payment->getAdditionalInformation('conflux_card_number_masked')) {
+            $payment->setAdditionalInformation('conflux_card_number_masked', $this->maskCardNumber($cardNumber));
+        }
+
+        $payment->unsAdditionalInformation('conflux_card_number');
+        $payment->unsAdditionalInformation('conflux_cvv');
+    }
+
+    private function maskCardNumber(string $cardNumber): string
+    {
+        $cardNumber = preg_replace('/\D+/', '', $cardNumber) ?: '';
+
+        if ($cardNumber === '') {
+            return '';
+        }
+
+        return str_repeat('*', max(strlen($cardNumber) - 4, 0)) . substr($cardNumber, -4);
     }
 }

@@ -24,8 +24,10 @@
 .conflux-card-form .input-text {
     border-color: #bfc7d1;
     border-radius: 4px;
+    box-sizing: border-box;
     box-shadow: none;
     height: 44px;
+    width: 100%;
 }
 
 .conflux-card-form .input-text:focus {
@@ -34,11 +36,15 @@
 }
 
 .conflux-card-form__number-control {
-    position: relative;
+    align-items: center;
+    display: grid;
+    gap: 8px;
+    grid-template-columns: minmax(0, 1fr) auto;
 }
 
 .conflux-card-form__number-control .input-text {
-    padding-right: 92px;
+    overflow: hidden;
+    text-overflow: clip;
 }
 
 .conflux-card-form__brand {
@@ -54,10 +60,7 @@
     justify-content: center;
     min-width: 62px;
     padding: 0 10px;
-    position: absolute;
-    right: 8px;
     text-transform: uppercase;
-    top: 8px;
 }
 
 .conflux-card-form__brand._detected {

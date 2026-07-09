@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Conflux\Payment\Model;
 
+use Conflux\Payment\Block\Info\Direct as DirectInfoBlock;
 use Magento\Payment\Model\Method\AbstractMethod;
 
 class Checkout extends AbstractMethod
@@ -14,6 +15,11 @@ class Checkout extends AbstractMethod
      * @var string
      */
     protected $_code = self::METHOD_CODE;
+
+    /**
+     * @var string
+     */
+    protected $_infoBlockType = DirectInfoBlock::class;
 
     /**
      * @var bool
