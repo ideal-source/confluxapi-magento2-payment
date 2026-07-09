@@ -39,6 +39,38 @@ bin/magento setup:di:compile
 bin/magento setup:static-content:deploy
 ```
 
+## 升级
+
+如果模块通过 Composer 安装，可以使用以下命令升级：
+
+```bash
+composer update confluxapi/magento2-payment
+bin/magento setup:upgrade
+bin/magento cache:flush
+```
+
+如果需要升级到指定版本，例如 `1.0.1`：
+
+```bash
+composer require confluxapi/magento2-payment:1.0.1
+bin/magento setup:upgrade
+bin/magento cache:flush
+```
+
+如果 Magento 运行在生产模式，还需要执行：
+
+```bash
+bin/magento setup:di:compile
+bin/magento setup:static-content:deploy -f
+```
+
+如果模块是手动安装在 `app/code/Conflux/Payment` 目录下，先用新版本文件替换该目录内容，然后执行：
+
+```bash
+bin/magento setup:upgrade
+bin/magento cache:flush
+```
+
 ## 手动安装
 
 如果包暂未发布到 Packagist，可以将模块放到以下目录：
@@ -53,6 +85,38 @@ app/code/Conflux/Payment
 bin/magento module:enable Conflux_Payment
 bin/magento setup:upgrade
 bin/magento cache:flush
+```
+
+## 卸载
+
+如果只需要禁用模块，不删除安装包，执行：
+
+```bash
+bin/magento module:disable Conflux_Payment
+bin/magento setup:upgrade
+bin/magento cache:flush
+```
+
+如果模块通过 Composer 安装，并且需要完全移除，执行：
+
+```bash
+bin/magento module:disable Conflux_Payment
+composer remove confluxapi/magento2-payment
+bin/magento setup:upgrade
+bin/magento cache:flush
+```
+
+如果 Magento 运行在生产模式，还需要执行：
+
+```bash
+bin/magento setup:di:compile
+bin/magento setup:static-content:deploy -f
+```
+
+如果模块是手动安装的，先禁用模块，然后删除：
+
+```text
+app/code/Conflux/Payment
 ```
 
 ## 配置

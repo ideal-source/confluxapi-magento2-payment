@@ -39,6 +39,38 @@ bin/magento setup:di:compile
 bin/magento setup:static-content:deploy
 ```
 
+## Upgrade
+
+If the module was installed with Composer, upgrade it with:
+
+```bash
+composer update confluxapi/magento2-payment
+bin/magento setup:upgrade
+bin/magento cache:flush
+```
+
+To upgrade to a specific version, use:
+
+```bash
+composer require confluxapi/magento2-payment:1.0.1
+bin/magento setup:upgrade
+bin/magento cache:flush
+```
+
+If your Magento instance is running in production mode, also run:
+
+```bash
+bin/magento setup:di:compile
+bin/magento setup:static-content:deploy -f
+```
+
+If the module was installed manually under `app/code/Conflux/Payment`, replace the module files with the new release files, then run:
+
+```bash
+bin/magento setup:upgrade
+bin/magento cache:flush
+```
+
 ## Manual Installation
 
 If the package is not available from Packagist yet, place the module under:
@@ -53,6 +85,38 @@ Then enable it:
 bin/magento module:enable Conflux_Payment
 bin/magento setup:upgrade
 bin/magento cache:flush
+```
+
+## Uninstall
+
+To disable the module without removing the package, run:
+
+```bash
+bin/magento module:disable Conflux_Payment
+bin/magento setup:upgrade
+bin/magento cache:flush
+```
+
+If the module was installed with Composer and you want to remove it completely, run:
+
+```bash
+bin/magento module:disable Conflux_Payment
+composer remove confluxapi/magento2-payment
+bin/magento setup:upgrade
+bin/magento cache:flush
+```
+
+If your Magento instance is running in production mode, also run:
+
+```bash
+bin/magento setup:di:compile
+bin/magento setup:static-content:deploy -f
+```
+
+If the module was installed manually, disable it first, then delete:
+
+```text
+app/code/Conflux/Payment
 ```
 
 ## Configuration
