@@ -1,5 +1,6 @@
 <div class="payment-method" data-bind="css: {'_active': (getCode() == isChecked())}">
-    <div class="payment-method-title field choice">
+    <div class="payment-method-title field choice conflux-payment-method-title"
+         data-bind="click: selectPaymentMethod">
         <input type="radio"
                name="payment[method]"
                class="radio"
@@ -7,6 +8,12 @@
         <label data-bind="attr: {'for': getCode()}" class="label">
             <span data-bind="text: getTitle()"></span>
         </label>
+        <div class="conflux-payment-icons">
+            <!-- ko foreach: getIconItems() -->
+            <img class="conflux-payment-icon"
+                 data-bind="attr: {src: url, alt: label, title: label}" />
+            <!-- /ko -->
+        </div>
     </div>
 
     <div class="payment-method-content">

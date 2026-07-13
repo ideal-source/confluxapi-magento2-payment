@@ -8,6 +8,7 @@
                 <model>Conflux\Payment\Model\Direct</model>
                 <order_status>pending_payment</order_status>
                 <title>Credit Card</title>
+                <icons></icons>
                 <environment></environment>
                 <allowspecific>0</allowspecific>
                 <group>conflux</group>
@@ -18,6 +19,7 @@
                 <model>Conflux\Payment\Model\Checkout</model>
                 <order_status>pending_payment</order_status>
                 <title>Conflux Hosted Checkout</title>
+                <icons></icons>
                 <environment></environment>
                 <expires_in>7200</expires_in>
                 <allowspecific>0</allowspecific>
