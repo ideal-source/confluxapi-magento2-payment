@@ -94,6 +94,10 @@ define([
             return this.getCardType() || $t('Card');
         },
 
+        getIconItems: function () {
+            return window.checkoutConfig.payment.conflux.icons[this.item.method] || [];
+        },
+
         validate: function () {
             if (!this.isValidCardNumber(this.normalizeCardNumber(this.cardNumber())) || !this.getCardType()) {
                 this.messageContainer.addErrorMessage({

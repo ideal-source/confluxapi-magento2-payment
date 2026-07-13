@@ -12,6 +12,13 @@
                 <field id="title" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Title</label>
                 </field>
+                <field id="icons" translate="label comment" type="multiselect" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Icons</label>
+                    <comment>Select the payment method icons shown next to the payment method title at checkout.</comment>
+                    <source_model>Conflux\Payment\Model\Config\Source\PaymentIcons</source_model>
+                    <backend_model>Conflux\Payment\Model\Config\Backend\PaymentIcons</backend_model>
+                    <frontend_model>Conflux\Payment\Block\Adminhtml\System\Config\Form\Field\PaymentIcons</frontend_model>
+                </field>
                 <field id="order_status" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" canRestore="1">
                     <label>New Order Status</label>
                     <source_model>Magento\Sales\Model\Config\Source\Order\Status\NewStatus</source_model>
@@ -64,6 +71,13 @@
                 </field>
                 <field id="title" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Title</label>
+                </field>
+                <field id="icons" translate="label comment" type="multiselect" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Icons</label>
+                    <comment>Select the payment method icons shown next to the payment method title at checkout.</comment>
+                    <source_model>Conflux\Payment\Model\Config\Source\PaymentIcons</source_model>
+                    <backend_model>Conflux\Payment\Model\Config\Backend\PaymentIcons</backend_model>
+                    <frontend_model>Conflux\Payment\Block\Adminhtml\System\Config\Form\Field\PaymentIcons</frontend_model>
                 </field>
                 <field id="order_status" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" canRestore="1">
                     <label>New Order Status</label>

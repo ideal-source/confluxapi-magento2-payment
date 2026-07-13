@@ -147,6 +147,7 @@ Available fields:
 
 - **Enabled**: Enable or disable the direct credit card payment method.
 - **Title**: Payment method title shown at checkout.
+- **Payment Icons**: Optional multi-select list of payment method icons shown next to the payment method title at checkout, including card brands, wallets, and local payment methods.
 - **New Order Status**: Initial Magento order status after order placement.
 - **API Base URL**: Full Conflux API endpoint provided by Conflux.
 - **App ID**: Conflux API application ID.
@@ -177,6 +178,7 @@ Available fields:
 
 - **Enabled**: Enable or disable the hosted checkout payment method.
 - **Title**: Payment method title shown at checkout.
+- **Payment Icons**: Optional multi-select list of payment method icons shown next to the payment method title at checkout, including card brands, wallets, and local payment methods.
 - **New Order Status**: Initial Magento order status after order placement.
 - **API Base URL**: Full Conflux API endpoint provided by Conflux.
 - **App ID**: Conflux API application ID.

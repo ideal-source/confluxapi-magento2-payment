@@ -1,3 +1,25 @@
+.conflux-payment-method-title,
+.conflux-payment-icons,
+.conflux-payment-icon {
+    cursor: pointer;
+}
+
+.conflux-payment-icons {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 8px 0 0 26px;
+}
+
+.conflux-payment-icon {
+    display: inline-block;
+    height: 34px;
+    max-width: 86px;
+    object-fit: contain;
+    vertical-align: middle;
+}
+
 .conflux-card-form {
     border: 1px solid #d6dbe1;
     border-radius: 6px;

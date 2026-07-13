@@ -10,6 +10,10 @@ define([
             redirectAfterPlaceOrder: false
         },
 
+        getIconItems: function () {
+            return window.checkoutConfig.payment.conflux.icons[this.item.method] || [];
+        },
+
         afterPlaceOrder: function () {
             redirectOnSuccessAction.redirectUrl = window.checkoutConfig.payment.conflux.redirectUrls[this.item.method];
             redirectOnSuccessAction.execute();
